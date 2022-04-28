@@ -94,7 +94,7 @@
     "gatsby-plugin-offline": "^5.11.1",
     "gatsby-plugin-react-svg": "^3.1.0",
     "gatsby-plugin-sass": "^5.11.1",
-    "gatsby-plugin-sharp": "^4.12.1",
+    "gatsby-plugin-sharp": "^4.13.0",
     "gatsby-remark-images": "^6.11.1",
     "gatsby-remark-lazy-load": "^1.0.2",
     "gatsby-remark-relative-images": "^2.0.2",
