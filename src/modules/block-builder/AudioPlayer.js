@@ -9,6 +9,9 @@ const Player = ({}) => {
 	const [time, setTime] = useState(0)
 	const playlistQuery = usePlaylistQuery()
 	const playlist = playlistQuery.allFile.edges
+	console.log('playlist')
+	console.log(playlist)
+
 	function changePlayingNow(param) {
 		setPlayingNow(param)
 	}
@@ -43,29 +46,40 @@ const Player = ({}) => {
 	}
 	console.log(time)
 	return (
-		<AudioPlayer
-			// autoPlay
-			// autoPlayAfterSrcChange={true}
-			metadata="metadata"
-			listenInterval={(e) => handleListenChange('listenInterval')}
-			onListen={(e) => handleListenChange('listen')}
-			onPause={(e) => handleListenChange('pause')}
-			onPlaying={(e) => handleListenChange('onPlaying')}
-			onEnded={handleClickNext}
-			onSeeking={(e) => console.log('onSeeking')}
-			onSeeked={(e) => console.log('onSeeked')}
-			onSuspend={(e) => console.log('On Suspend')}
-			onPlayError={(e) => console.log('onPlayError')}
-			onChangeCurrentTimeError={(e) => console.log('onChangeCurrentTimeError')}
-			onPlay={(e) => console.log(e)}
-			src={playlist[playingNow].node.publicURL}
-			onClickPrevious={handleClickPrevious}
-			onClickNext={handleClickNext}
-			showSkipControls={true}
-			showJumpControls={false}
-			autoPlayAfterSrcChange={true}
-			layout="horizontal-reverse"
-		/>
+		<>
+			{playlist.map((musicNodes, indx) => {
+				return (
+					<>
+						<h1>{musicNodes.node.name}</h1>
+						<AudioPlayer
+							autoPlay={false}
+							autoPlayAfterSrcChange={false}
+							key={indx}
+							metadata="metadata"
+							listenInterval={(e) => handleListenChange('listenInterval')}
+							onListen={(e) => handleListenChange('listen')}
+							onPause={(e) => handleListenChange('pause')}
+							onPlaying={(e) => handleListenChange('onPlaying')}
+							onEnded={handleClickNext}
+							onSeeking={(e) => console.log('onSeeking')}
+							onSeeked={(e) => console.log('onSeeked')}
+							onSuspend={(e) => console.log('On Suspend')}
+							onPlayError={(e) => console.log('onPlayError')}
+							onChangeCurrentTimeError={(e) =>
+								console.log('onChangeCurrentTimeError')
+							}
+							onPlay={(e) => console.log(e)}
+							src={musicNodes.node.publicURL}
+							onClickPrevious={handleClickPrevious}
+							onClickNext={handleClickNext}
+							showSkipControls={false}
+							showJumpControls={false}
+							layout="horizontal-reverse"
+						/>
+					</>
+				)
+			})}
+		</>
 	)
 }
 

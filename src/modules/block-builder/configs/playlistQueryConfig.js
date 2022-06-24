@@ -11,6 +11,7 @@ export const usePlaylistQuery = () => {
 					edges {
 						node {
 							publicURL
+							name
 						}
 					}
 				}
